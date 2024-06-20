@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+h1{
+    padding: 15px;
+}
+.enter-box{
+    margin-top: 80px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px #333;
+}
+.transection{
+    margin-top: 80px;
+    padding-bottom: 100px;
+}
+.col-box{
+    color: aliceblue;
+    border-radius: 10px;
+}
+.col-box, .col-box h3{
+    padding: 10px;
+}
+.deposit{
+    background-color: blue;
+}
+.withdrow{
+    background-color: green;
+}
+.balance{
+    background-color: orange;
+}
