@@ -31,3 +31,6 @@ h1{
 .balance{
     background-color: orange;
 }
+#transection{
+    display: none;
+}

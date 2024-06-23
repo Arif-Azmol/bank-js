@@ -12,33 +12,33 @@
 
 <body>
     <div class="container">
-        <div class="enter-box">
+        <div id="loginBox" class="enter-box">
             <h1 class="text-center text-primary-emphasis">Welcome To Online Bank</h1>
             <input type="text" placeholder="Type Your Name" class="form-control">
             <br>
             <input type="password" placeholder="Enter Your Password" class="form-control">
             <br>
-            <button class="btn btn-success">Enter</button>
+            <button id="login" class="btn btn-success">Enter</button>
         </div>
-        <div class="transection">
+        <div id="transection" class="transection">
             <h1 class="text-center text-primary-emphasis">Transection Sector</h1>
             <div class="row text-center">
                 <div class="col-md-4">
                     <div class="deposit col-box">
                         <h3>Deposit</h3>
-                        <h1>$00</h1>
+                        <h1>$ <span id="currentDeposit">00</span></h1>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="withdrow col-box">
                         <h3>Withdrow</h3>
-                        <h1>$00</h1>
+                        <h1>$ <span id="currentWithdrow">00</span></h1>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="balance col-box">
                         <h3>Balance</h3>
-                        <h1>$00</h1>
+                        <h1>$ <span id="totalBalane">1200</span></h1>
                     </div>
                 </div>
             </div>
@@ -46,22 +46,65 @@
                 <div class="col-md-6">
                     <div class="enter-box">
                         <h1>Deposit</h1>
-                        <input type="text" placeholder="Enter Amount" class="form-control">
+                        <input type="text" placeholder="$ Enter Amount" id="depositAmount" class="form-control">
                         <br>
-                        <button class="btn btn-success">Enter</button>
+                        <button id="deposit" class="btn btn-success">Enter</button>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="enter-box">
                         <h1>Withdrow</h1>
-                        <input type="text" placeholder="Enter Amount" class="form-control">
+                        <input type="text" placeholder="$ Enter Amount" class="form-control" id="withdrowAmount">
                         <br>
-                        <button class="btn btn-success">Enter</button>
+                        <button id="withdrowBtn" class="btn btn-success">Enter</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        const loginbtn = document.getElementById("login");
+        loginbtn.addEventListener("click", function () {
+            const enterBox = document.getElementById("loginBox");
+            enterBox.style.display = "none";
+            const balance = document.getElementById("transection");
+            balance.style.display = "block";
+        })
+
+
+        const depositBtn = document.getElementById("deposit");
+        depositBtn.addEventListener("click", function () {
+            var amount = document.getElementById("depositAmount").value;
+            var depositNumber = parseFloat(amount);
+
+            updateSpanText("currentDeposit", depositNumber);
+            updateSpanText("totalBalane", depositNumber);
+        })
+        function updateSpanText(id, depositNumber) {
+            const currentBalance = document.getElementById(id).innerText;
+            const currentBalanceNumber = parseFloat(currentBalance);
+            const totalBalance = depositNumber + currentBalanceNumber;
+            document.getElementById(id).innerText = totalBalance;
+            document.getElementById("depositAmount").value = "";
+        }
+        // withdrow event 
+        const withBtn = document.getElementById("withdrowBtn");
+        withBtn.addEventListener("click", function () {
+            const withdrowNumber = getInputNumber("withdrowAmount");
+
+            updateSpanText("currentWithdrow", withdrowNumber);
+            updateSpanText("totalBalane", -1 * withdrowNumber);
+            document.getElementById("withdrowAmount").value = "";
+            
+        })
+        function getInputNumber(id) {
+            const taka = document.getElementById(id).value;
+            const takaNumber = parseFloat(taka);
+            return takaNumber;
+        }
+
+
+    </script>
 </body>
 
 </html>
